@@ -68,7 +68,9 @@
                             <label for="insurance">Insurance:</label>
                         </th>
                         <td  >
-                            <input class="inputs" placeholder="Select the patient's insurance option"  name="insurance" id="insurance">
+                            <select class="inputs" name="insurance" id="insurance">
+                                    <option disabled selected hidden>Select the patient's insurance option</option>
+                            </select>
                         </td>
                     </tr>
                 </tbody>
@@ -90,6 +92,9 @@
     require_once "../services/PatientManager.php";
 
     require_once "../services/DoctorManager.php";
+    
+    require_once "../services/InsuranceManager.php";
+
 
 
 
@@ -122,12 +127,28 @@
 
         array_push( $doctors, $doc );
     }
+
+    $getAll = new InsuranceManager( null, "getAll" );
+
+    $insurances = [];
+
+    foreach( $getAll->getAll() as $insurance )
+    {
+        array_push( $insurances,
+                                [
+                                    "id" =>  $insurance->getId(),
+                                    "name" =>  $insurance->getAccord(),
+                                    "value" =>  $insurance->getValue(),                        
+                                ]  );
+    }
 ?>
 
 <script>
     var patient  = <?php echo json_encode( $patients ); ?>
 
     var doctor   = <?php echo json_encode( $doctors ); ?> 
+
+    var insurances = <?php echo json_encode( $insurances ); ?>
 
     patient.forEach( 
         e =>
@@ -155,10 +176,19 @@
         }
     );
 
+    insurances.forEach(
+        e =>
+        {
+
+            var select = document.getElementById( 'insurance' );
+            var option = document.createElement( 'option' );
+            option.setAttribute( "name", "insuranceID" );
+            option.setAttribute( "value", e.value );
+            option.appendChild( document.createTextNode( e.name ) );
+            select.appendChild( option );
+        }
+    );
     
-    function inputCost( el )
-    {
-    }
 
 </script>
 <script src="../../js/Patient.js" ></script>
