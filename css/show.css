@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+html,body
+{
+    height:100%;
+    width:100%;
+    margin:0;
+}
+
+body
+{
+    font-family: 'Roboto', 'sans-serif';
+    /* color: white; */
+    display: flex;
+    background-color: #009dd1;
+}
+
+
+
+  
+
+.main
+{
+    margin: auto;
+}
+
+
+.user_table
+{
+    border : 1px solid black;
+    border-collapse: collapse;
+    background-color: white;
+    height: 30%;
+    width: 15%;
+    text-align: left;
+}
+
+.user_table thead tr
+{
+    border-bottom: 1px solid black;
+}
+
+
+.user_table tr th
+{
+    border-right: 1px solid black;
+    padding-left: 0.1em;
+    padding-right: 0.5em;
+}
+
+.user_table tr th:last-child
+{
+    border-right: none;
+}
+
+
+.user_table td 
+{
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 0.25em;
+    text-align: left;
+}
+
+.user_table td :last-child
+{
+    border-right: 1px solid black;
+}
+
+.user_table-hidden
+{
+    display: none;
+}
+

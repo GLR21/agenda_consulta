@@ -1,0 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+html,body
+{
+    height:100%;
+    width:100%;
+    margin:0;
+}
+
+body
+{
+    font-family: 'Roboto', 'sans-serif';
+    /* color: white; */
+    display: flex;
+    background-color: #009dd1;
+}
+
+
+.appointments-table
+{
+    border: 1px solid black;
+    font-size: 16px;
+}
+
+.appointments-table thead tr td
+{
+    margin-right: 15px;
+}
+

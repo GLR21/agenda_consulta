@@ -1,0 +1,40 @@
+
+.main-nav
+{
+    background-color: #bfbfbf;
+    height: 8%;
+    width: 100%;
+    position: absolute;
+    border-bottom-left-radius: 0.75em;
+    border-bottom-right-radius: 0.75em;
+}
+
+.main-nav a
+{
+    position: relative;
+    margin-top: 1.5em;
+    
+    margin-right: 0.3em;
+
+    float: right;
+    color:  black ;
+    font-weight: 900;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 0.5em;
+    padding: 0.5em;
+}
+    
+.poff
+{
+    cursor: pointer;
+    pointer-events: all;
+    background-image: url( "../resources/poff.svg" );
+    height: 30px;
+    width: 30px;
+    float: right;
+    position: relative;
+    margin-top: 1.6em;
+    margin-right: 2em;
+    margin-left: 2em;
+}
