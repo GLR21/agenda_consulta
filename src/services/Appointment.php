@@ -55,7 +55,14 @@ class Appointment
      */
     public function getStartAt()
     {
-        return $this->startAt;
+        $date = "";
+        if( strpos( $this->startAt, "/" ) )
+        {
+            $date = explode( '/', $this->startAt );
+            $y = explode( " ", $date[2] );
+            $date = $y[0]."-".$date[1]."-".$date[0]." ".$y[1];           
+        }
+        return $date;
     }
 
     /**
@@ -63,7 +70,14 @@ class Appointment
      */
     public function getEndAt()
     {
-        return $this->endAt;
+        $date = "";
+        if( strpos( $this->endAt, "/" ) )
+        {
+            $date = explode( '/', $this->endAt );
+            $y = explode( " ", $date[2] );
+            $date = $y[0]."-".$date[1]."-".$date[0]." ".$y[1];           
+        }
+        return $date;
     }
 
     /**
@@ -71,7 +85,7 @@ class Appointment
      */
     public function getTreatment()
     {
-        return $this->treatment;
+        return $this->treatment == null ? " " : $this->treatment;
     }
 
     /**
@@ -79,7 +93,7 @@ class Appointment
      */
     public function getCost()
     {
-        return $this->cost;
+        return intval( $this->cost );
     }
 
     /**

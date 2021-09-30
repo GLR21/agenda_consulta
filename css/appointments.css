@@ -19,12 +19,37 @@ body
 
 .appointments-table
 {
-    border: 1px solid black;
-    font-size: 16px;
+    /* border: 1px solid black; */
+    border-collapse: collapse;
+    display: inline-block;
 }
 
 .appointments-table thead tr td
 {
-    margin-right: 15px;
+    white-space: nowrap;
+    height: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    text-align: left;
+    /* font-size: 5px; */
+    
 }
 
+.appointments-table tr td
+{
+    white-space: nowrap;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    text-align: left;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-top: 0;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.content
+{
+    margin: auto;
+    display: inline-block;
+}

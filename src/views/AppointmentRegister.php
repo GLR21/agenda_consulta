@@ -13,10 +13,14 @@
             <table  >
                 <thead>
                     <div class="title">
-                        <h1  >Appointment Register</h1>
+                        <h1>Appointment Register</h1>
                     </div>
                 </thead>
                 <tbody  >
+                    <?php
+                        var_dump( $_GET );
+                    
+                    ?>
                     <tr>
                         <th >
                             <label for="name">
@@ -41,10 +45,18 @@
                     </tr>
                     <tr>
                         <th>
-                            <label for="date-start">Date start:</label>
+                            <label for="start-date">Date start:</label>
                         </th>
                         <td>
-                            <input class="inputs" oninput="validateDateFormat( this, 'dd/MM/yyyy' )" placeholder="Define the appointment's start day"  name="date-start" id="date-start">
+                            <input class="inputs" oninput="validateDateFormat( this, 'dd/MM/yyyy' )" placeholder="Define the appointment's start day"  value="<?php echo isset($_GET) ? $_GET['start_date'] : ""; ?>"  name="start-date" id="start-date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="start-hour">Hour :</label>
+                        </th>
+                        <td>
+                            <input  class="inputs" name="start-hour" id="start-hour" type="time"">
                         </td>
                     </tr>
                     <tr>
@@ -53,6 +65,14 @@
                         </th>
                         <td>
                             <input class="inputs" oninput="validateDateFormat( this, 'dd/MM/yyyy' )" placeholder="Define the appointment's end day"  type="text" name="end-date" id="end-date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="end-hour">Hour :</label>
+                        </th>
+                        <td>
+                            <input  class="inputs" name="end-hour" id="end-hour" type="time"">
                         </td>
                     </tr>
                     <tr >
@@ -144,24 +164,13 @@
 ?>
 
 <script>
-    var patient  = <?php echo json_encode( $patients ); ?>
+    var doctor   = <?php echo json_encode( $doctors ); ?> ;
+    var patient  = <?php echo json_encode( $patients ); ?>;
+    var insurances = <?php echo json_encode( $insurances ); ?>;
 
-    var doctor   = <?php echo json_encode( $doctors ); ?> 
-
-    var insurances = <?php echo json_encode( $insurances ); ?>
-
-    patient.forEach( 
-        e =>
-        {
-            var select = document.getElementById( 'patient_id' );
-            var option = document.createElement( "option" );
-            option.setAttribute( "name", "patientID" );
-            option.setAttribute( "value", e.id );
-            option.appendChild( document.createTextNode( e.name ) );
-            select.appendChild( option );
-
-        }
-    );
+    var editDoc = <?php if( isset( $_GET ) ){  echo json_encode($_GET['docId']); } ?> == null?  "":  <?php if( isset( $_GET ) ){  echo json_encode($_GET['docId']); } ?> ;
+    var editPat = <?php if( isset( $_GET ) ){  echo json_encode($_GET['paID']); } ?> == null?  "":  <?php if( isset( $_GET ) ){  echo json_encode($_GET['paID']); } ?> ;
+    var editInsurance = <?php if( isset( $_GET ) ){  echo json_encode($_GET['i_id']); } ?> == null?  "":  <?php if( isset( $_GET ) ){  echo json_encode($_GET['i_id']); } ?> ;
 
     doctor.forEach(
         e =>
@@ -172,7 +181,22 @@
             option.setAttribute( "name", "doctorID" );
             option.setAttribute( "value", e.id );
             option.appendChild( document.createTextNode( e.name ) );
+            option.selected = editDoc == e.id;
             select.appendChild( option );
+        }
+    );
+
+    patient.forEach( 
+        e =>
+        {
+            var select = document.getElementById( 'patient_id' );
+            var option = document.createElement( "option" );
+            option.setAttribute( "name", "patientID" );
+            option.setAttribute( "value", e.id );
+            option.appendChild( document.createTextNode( e.name ) );
+            option.selected = editPat == e.id;
+            select.appendChild( option );
+
         }
     );
 
@@ -184,6 +208,7 @@
             var option = document.createElement( 'option' );
             option.setAttribute( "value", e.id );
             option.appendChild( document.createTextNode( e.name ) );
+            option.selected = editInsurance == e.id;
             select.appendChild( option );
         }
     );

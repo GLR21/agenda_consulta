@@ -7,6 +7,7 @@ class AppointmentManager
 {
 
     private $appointments;
+    private $edit;
     /**
      * Class constructor.
      */
@@ -31,7 +32,7 @@ class AppointmentManager
                                                 $appointment->getStartAt(),
                                                 $appointment->getEndAt(),
                                                 $appointment->getTreatment(),
-                                                $appointment->getTreatment(),
+                                                $appointment->getCost(),
                                                 $appointment->hasInsurance() 
                                             );
             break;
@@ -40,12 +41,33 @@ class AppointmentManager
                 $transaction = new AppointmentTransaction();
                 $this->appointments = $transaction->getAll();
             break;
+
+            case "delete":
+                $transaction = new AppointmentTransaction();
+                $this->deleted = $transaction->delete( $appointment->getId() );
+                break;
+            case "edit":
+                $transaction = new AppointmentTransaction();
+                $this->edit = $transaction->get( $appointment->getId() );
+            break;
         }
     }
+
+
 
     public function getAll()
     {
         return $this->appointments;
+    }
+
+    public function deleted()
+    {
+        return $this->deleted;
+    }
+
+    public function edit()
+    {
+        return $this->edit;
     }
 }
 

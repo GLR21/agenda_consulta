@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <!-- home -->
-    <database>agenda</database>
+    <!-- <database>agenda</database>
     <user>postgres</user>
     <password>glr</password>
     <host>127.0.0.1</host>
-    <port>5432</port>
+    <port>5432</port> -->
     <!-- uni -->
-    <!-- <database>treinamento_gabriel_ramos_agenda</database>
+    <database>treinamento_gabriel_ramos_agenda</database>
     <user>postgres</user>
     <password></password>
     <host>127.0.0.1</host>
-    <port>5432</port> -->
+    <port>5432</port>
 </config>
