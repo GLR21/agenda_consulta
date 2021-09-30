@@ -13,28 +13,28 @@
             <table  >
                 <thead>
                     <div class="title">
-                        <h1  >Patient Register</h1>
+                        <h1  >Appointment Register</h1>
                     </div>
                 </thead>
                 <tbody  >
                     <tr>
                         <th >
                             <label for="name">
-                                <label for="doc">Doctor:</label>
+                                <label for="doc_id">Doctor:</label>
                             </label>
                         </th>
                         <td>
-                            <select class="inputs" name="doc" id="doc">
+                            <select class="inputs" name="doc_id" id="doc_id">
                                 <option disabled selected hidden>Select a doctor</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <label for="patient">Patient:</label>                        
+                            <label for="patient_id">Patient:</label>                        
                         </th>
                         <td>
-                            <select class="inputs" id="patient" name="patient" >
+                            <select class="inputs" id="patient_id" name="patient_id" >
                                 <option disabled selected hidden>Select a patient</option>
                            </select>
                         </td>
@@ -82,7 +82,7 @@
                 }
             ?>
             <input type='hidden' name='id' value='appointment'>
-            <input type='hidden' name='action' value="<?php if( array_key_exists( "action", $_GET ) ){ echo $_GET['action'];  } else { echo "add"; } ?>">
+            <input type='hidden' name='action' value="add">
             <button id="submit-btn" type="submit" class="submit-btn" >Save</button>
         </form>
     </div>
@@ -153,7 +153,7 @@
     patient.forEach( 
         e =>
         {
-            var select = document.getElementById( 'patient' );
+            var select = document.getElementById( 'patient_id' );
             var option = document.createElement( "option" );
             option.setAttribute( "name", "patientID" );
             option.setAttribute( "value", e.id );
@@ -167,7 +167,7 @@
         e =>
         {
 
-            var select = document.getElementById( 'doc' );
+            var select = document.getElementById( 'doc_id' );
             var option = document.createElement( 'option' );
             option.setAttribute( "name", "doctorID" );
             option.setAttribute( "value", e.id );
@@ -182,8 +182,7 @@
 
             var select = document.getElementById( 'insurance' );
             var option = document.createElement( 'option' );
-            option.setAttribute( "name", "insuranceID" );
-            option.setAttribute( "value", e.value );
+            option.setAttribute( "value", e.id );
             option.appendChild( document.createTextNode( e.name ) );
             select.appendChild( option );
         }

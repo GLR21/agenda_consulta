@@ -12,7 +12,7 @@ class AppointmentTransaction
         try
         {
             $database = Conection::load();
-            $prepared = $database->prepare( "INSERT INTO MEDICAL_APPOINTMENT ( DOCTOR_ID, PATIENT_ID, START_AT, END_AT, TREATMENT, COST, HASINSURANCE) VALUES ( $doctor_id , $patient_id ,  $start_at , $end_at , $treatment , $cost  , $hasInsurance ) " );
+            $prepared = $database->prepare( "INSERT INTO MEDICAL_APPOINTMENT ( DOCTOR_ID, PATIENT_ID, START_AT, END_AT, TREATMENT, COST, INSURANCE) VALUES ( $doctor_id , $patient_id ,  $start_at , $end_at , $treatment , $cost  , $hasInsurance ) " );
             $prepared->execute();
         }
         catch(\Exception $e)
@@ -37,7 +37,7 @@ class AppointmentTransaction
                                                 m.end_at,
                                                 m.treatment,
                                                 m.cost,
-                                                m.hasinsurance as insurance
+                                                m.insurance
                                             from patient p, doctor d,  medical_appointment m 
                                             where 
                                                 p.id = m.patient_id 

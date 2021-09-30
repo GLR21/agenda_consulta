@@ -134,13 +134,15 @@ if( isset( $_POST ) )
 
         case "appointment":
 
-            $manager = new AppointmentTransaction();
-
-            $manager->getAll();
+            $manager; 
 
             switch( $_POST['action'] )
             {
 
+                case "add":
+                 var_dump( $_POST );
+                    $manager = new AppointmentManager( new Appointment( null, $_POST['doc_id'], $_POST['patient_id'], $_POST['date-start'] , $_POST['end-date'], null, $_POST['cost'], $_POST['insurance'] ), $_POST['action'] );
+                    
             }
         
         break;
