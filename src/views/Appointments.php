@@ -153,10 +153,37 @@ appointments.forEach
                     td_pname.appendChild( document.createTextNode( element.pa_name ) );
                     td_start.appendChild( document.createTextNode( element.start ) );
                     td_end.appendChild( document.createTextNode( element.end ) );
-
+                    
+                    var formBtnEdit  = document.createElement( 'Form' );
                     var btnEditTreat = document.createElement( 'Button' );
+                    var input_action        = document.createElement( 'input' );
+                    var idtret = document.createElement( 'input' );
+                    var value = document.createElement( 'INPUT' );
+
                     btnEditTreat.appendChild( document.createTextNode( 'View Treatment' ) );
-                    td_treatment.appendChild( btnEditTreat  );
+                    
+                    formBtnEdit.setAttribute( "method", "POST" );
+                    formBtnEdit.setAttribute( "ACTION", "../services/controller.php");
+                    
+                    idtret.setAttribute( 'name', 'id' );
+                    idtret.setAttribute( 'value', "appointment" );
+                    idtret.setAttribute( 'type', 'hidden' );
+
+                    value.setAttribute( "name", "value" );
+                    value.setAttribute( "value", element.ap_id  );
+                    value.setAttribute( 'type', 'hidden' );
+
+                    input_action.setAttribute( "name", "action" );
+                    input_action.setAttribute( "value", "editTreatment" );
+                    input_action.setAttribute( "type", "hidden" );
+                    
+                    formBtnEdit.appendChild(  btnEditTreat );
+                    formBtnEdit.appendChild( value );
+                    formBtnEdit.appendChild( idtret );
+                    formBtnEdit.appendChild( input_action );
+                    
+                    td_treatment.appendChild( formBtnEdit  );
+                    
                     td_cost.appendChild( document.createTextNode( "R$"+calc) );
                     td_accord.appendChild( document.createTextNode( element.accord ) );
                     td_delete.appendChild( form_delete );

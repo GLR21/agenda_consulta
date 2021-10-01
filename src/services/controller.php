@@ -72,6 +72,7 @@ if( isset( $_POST ) )
                 break;
                     
                 case "editable":
+
                     $manager = new PatientManager( new Patient( $_POST['patid'] ,$_POST['name'],  $_POST['password'], $_POST['age'], $_POST['birth'], $_POST['cpf'], $_POST['rg'], 1 , $_POST['email'], $_POST['obs'], $_POST['address']) , $_POST['action'] );
                     if( $manager->isEdited())
                     {
@@ -80,12 +81,11 @@ if( isset( $_POST ) )
 
                 break;
                 
-                default:
+                case "add":
                     new PatientManager( new Patient( null ,$_POST['name'], verifyEncoding( $_POST['password'] ), $_POST['age'], $_POST['birth'], $_POST['cpf'], $_POST['rg'], 1 , $_POST['email'], $_POST['obs'], $_POST['address']) , $_POST['action']  );
                     header('Location: ../views/Patients.php');
                 break;    
             }
-
         break;
         
         case 'doc':
@@ -177,6 +177,19 @@ if( isset( $_POST ) )
             
                 case "editable": 
                     $manager = new AppointmentManager( new Appointment( $_POST['appointid'], $_POST['doc_id'], $_POST['patient_id'], $_POST['start-date']." ".$_POST['start-hour'] , $_POST['end-date']." ".$_POST['end-hour'], null, $_POST['cost'], $_POST['insurance'] ), $_POST['action']  );
+                    header("Location: ../views/Appointments.php");
+                break;
+                    
+                case "editTreatment":
+                    $manager = new AppointmentManager( new Appointment( $_POST['value'], null, null, null, null, null, null, null ), $_POST['action'] );
+                    $text = $manager->getTreatment();
+                    var_dump( $text );
+                    $id = $_POST['value'];
+                    header("Location: ../views/TreatmentEditor.php?id=$id&treatment=$text"); 
+                    break;
+                case "updateTreatment":
+                    // var_dump( $_POST );
+                    $manager = new AppointmentManager( new Appointment( $_POST['value'], null,null,null,null,$_POST['treatment'],null,null ), $_POST['action'] );
                     header("Location: ../views/Appointments.php");
                 break;
             }

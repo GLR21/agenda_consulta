@@ -8,6 +8,9 @@ class AppointmentManager
 
     private $appointments;
     private $edit;
+    private $updated;
+    private $treatmet;
+
     /**
      * Class constructor.
      */
@@ -63,6 +66,17 @@ class AppointmentManager
                                                         $appointment->getCost(),
                                                         $appointment->hasInsurance()
                                                      );
+            break;
+
+            case "editTreatment":
+                $transaction = new AppointmentTransaction();
+                $this->treatment = $transaction->updateTreatment( $appointment->getId() );
+            break;
+
+            case "updateTreatment":
+                $transaction = new AppointmentTransaction();
+                $transaction->saveTreatment( $appointment->getId(), $appointment->getTreatment() );
+            break;
         }
     }
 
@@ -81,6 +95,11 @@ class AppointmentManager
     public function edit()
     {
         return $this->edit;
+    }
+
+    public function getTreatment()
+    {
+        return $this->treatment;
     }
 }
 

@@ -101,7 +101,7 @@
                     echo '<input type="hidden" name="patid" value="'.  $_GET['id'] . '">';
                 }
             ?>
-            <input type='hidden' name='id' value='appointment'>
+            <input type='hidden' name='id' value='patient'>
             <input type='hidden' name='action' value="<?php if( array_key_exists( "action", $_GET ) ){ echo $_GET['action'];  } else { echo "add"; } ?>">
             <button id="submit-btn" type="submit" class="submit-btn" >Save</button>
         </form>

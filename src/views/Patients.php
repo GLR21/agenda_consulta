@@ -113,7 +113,7 @@ else
         // Insert a cell at the end of the row
         var row1 = newRow.insertCell();
         row1.appendChild( document.createTextNode( element.name) );
-
+        
         var row2 = newRow.insertCell();
         row2.appendChild( document.createTextNode( element.email) );
 

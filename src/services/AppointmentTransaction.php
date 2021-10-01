@@ -211,4 +211,40 @@ class AppointmentTransaction
             echo $e->getMessage();
         }
     }
+
+
+    public function updateTreatment( $id )
+    {
+        try
+        {
+            $database = Conection::load();
+
+            $prepared = $database->query( "SELECT TREATMENT FROM MEDICAL_APPOINTMENT WHERE ID = $id" );
+            $prepared->execute();
+
+            return $prepared->fetchAll()[0]['treatment'];
+
+        } 
+        
+        catch( \Exception $e )
+        {
+            echo $e->getMessage();
+        }
+    }
+
+    public function saveTreatment( $id, $treatment )
+    {
+        try
+        {
+            $database = Conection::load();
+            $prepared = $database->query( " UPDATE MEDICAL_APPOINTMENT SET TREATMENT = '$treatment' WHERE ID = $id " );
+
+            $prepared->execute();
+        }
+        catch(\Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
 }
