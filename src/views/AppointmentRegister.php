@@ -98,7 +98,7 @@
                 }
             ?>
             <input type='hidden' name='id' value='appointment'>
-            <input type='hidden' name="action" value="<?php echo isset( $_GET ) ? $_GET['action'] : 'add' ?>">
+            <input type='hidden' name='action' value="<?php if( array_key_exists( "action", $_GET ) ){ echo $_GET['action'];  } else { echo "add"; } ?>">
             <button id="submit-btn" type="submit" class="submit-btn" >Save</button>
         </form>
     </div>
@@ -110,9 +110,6 @@
     require_once "../services/DoctorManager.php";
     
     require_once "../services/InsuranceManager.php";
-
-
-
 
     $getAll = new PatientManager( null, 'getAll' ); 
 
