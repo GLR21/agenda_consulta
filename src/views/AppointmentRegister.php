@@ -17,10 +17,6 @@
                     </div>
                 </thead>
                 <tbody  >
-                    <?php
-                        var_dump( $_GET );
-                    
-                    ?>
                     <tr>
                         <th >
                             <label for="name">
@@ -56,7 +52,7 @@
                             <label for="start-hour">Hour :</label>
                         </th>
                         <td>
-                            <input  class="inputs" name="start-hour" id="start-hour" type="time"">
+                            <input  class="inputs" name="start-hour" value="<?php echo isset($_GET) ? $_GET['start_time'] : ""; ?>" id="start-hour" type="time"">
                         </td>
                     </tr>
                     <tr>
@@ -64,7 +60,7 @@
                             <label for="rg">End:</label>                        
                         </th>
                         <td>
-                            <input class="inputs" oninput="validateDateFormat( this, 'dd/MM/yyyy' )" placeholder="Define the appointment's end day"  type="text" name="end-date" id="end-date">
+                            <input class="inputs" oninput="validateDateFormat( this, 'dd/MM/yyyy' )" value="<?php echo isset($_GET) ? $_GET['end_date'] : ""; ?>" placeholder="Define the appointment's end day"  type="text" name="end-date" id="end-date">
                         </td>
                     </tr>
                     <tr>
@@ -72,7 +68,7 @@
                             <label for="end-hour">Hour :</label>
                         </th>
                         <td>
-                            <input  class="inputs" name="end-hour" id="end-hour" type="time"">
+                            <input  class="inputs" name="end-hour" value="<?php echo isset($_GET) ? $_GET['end_time'] : ""; ?>" id="end-hour" type="time"">
                         </td>
                     </tr>
                     <tr >
@@ -80,7 +76,7 @@
                             <label for="cost">Cost:</label>
                         </th>
                         <td  >
-                            <input class="inputs" oninput="inputCost(this)" type="text" name="cost" id="cost">
+                            <input class="inputs" oninput="inputCost(this)" type="text" value="<?php echo isset($_GET) ? $_GET['cost'] : ""; ?>" name="cost" id="cost">
                         </td>
                     </tr>
                     <tr >
@@ -96,13 +92,13 @@
                 </tbody>
             </table>
             <?php
-                if( array_key_exists( "id", $_GET ) )
+                if( isset($_GET) )
                 {
-                    echo '<input type="hidden" name="patid" value="'.  $_GET['id'] . '">';
+                    echo '<input type="hidden" name="appointid" value="'.  $_GET['id'] . '">';
                 }
             ?>
             <input type='hidden' name='id' value='appointment'>
-            <input type='hidden' name='action' value="add">
+            <input type='hidden' name="action" value="<?php echo isset( $_GET ) ? $_GET['action'] : 'add' ?>">
             <button id="submit-btn" type="submit" class="submit-btn" >Save</button>
         </form>
     </div>

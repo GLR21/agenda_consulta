@@ -179,4 +179,36 @@ class AppointmentTransaction
     }
 
 
+    public function update(  $id , $doctor_id, $patient_id, $start_at, $end_at, $treatment, $cost, $insurance  )
+    {
+        try
+        {
+            $database = Conection::load();
+            
+            $sql = "
+            UPDATE
+            MEDICAL_APPOINTMENT SET
+                DOCTOR_ID = $doctor_id,
+                PATIENT_ID = $patient_id,
+                START_AT = '$start_at', 
+                END_AT = '$end_at',
+                COST = $cost,
+                INSURANCE = $insurance
+            ";
+
+            if( isset( $treatment ) )
+            {
+                $sql.= " ,TREATMENT = $treatment ";                
+            }
+            
+            $prepared = $database->prepare( $sql. " WHERE ID = $id" );
+            
+            $prepared->execute();
+
+        }
+        catch(\Exception $e )
+        {
+            echo $e->getMessage();
+        }
+    }
 }

@@ -50,6 +50,19 @@ class AppointmentManager
                 $transaction = new AppointmentTransaction();
                 $this->edit = $transaction->get( $appointment->getId() );
             break;
+
+            case "editable":
+                $transaction = new AppointmentTransaction();
+                $this->updated = $transaction->update( 
+                                                        $appointment->getId() ,
+                                                        $appointment->getDocId(), 
+                                                        $appointment->getPatientId(), 
+                                                        $appointment->getStartAt(),
+                                                        $appointment->getEndAt(),
+                                                        $appointment->getTreatment(),
+                                                        $appointment->getCost(),
+                                                        $appointment->hasInsurance()
+                                                     );
         }
     }
 

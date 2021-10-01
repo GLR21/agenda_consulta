@@ -85,7 +85,7 @@ class Appointment
      */
     public function getTreatment()
     {
-        return $this->treatment == null ? " " : $this->treatment;
+        return $this->treatment;
     }
 
     /**

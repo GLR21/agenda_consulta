@@ -165,7 +165,7 @@ if( isset( $_POST ) )
                     $start_date = formatDate( $start[0] );
                     $start_time = $start[1];
                     $end        = explode( " ", $rs['end'] );
-                    $end_date   = $end[0];
+                    $end_date   = formatDate( $end[0] );
                     $end_time   = $end[1];
                     $treament   = $rs['treatment'];
                     $cost       = $rs['cost'];
@@ -175,8 +175,12 @@ if( isset( $_POST ) )
                     header("Location: ../views/AppointmentRegister.php?id=$apID&docId=$docID&paID=$paID&docName=$docName&paName=$paName&start_date=$start_date&start_time=$start_time&end_date=$end_date&end_time=$end_time&treatment=$treament&cost=$cost&accord=$accord&value=$value&i_id=$i_id&action=editable"); 
                 break;
             
+                case "editable": 
+                    $manager = new AppointmentManager( new Appointment( $_POST['appointid'], $_POST['doc_id'], $_POST['patient_id'], $_POST['start-date']." ".$_POST['start-hour'] , $_POST['end-date']." ".$_POST['end-hour'], null, $_POST['cost'], $_POST['insurance'] ), $_POST['action']  );
+                    header("Location: ../views/Appointments.php");
+                break;
             }
-        
+            
         break;
     }
 
@@ -204,10 +208,6 @@ function formatDate( $date )
     $date = $date[2]."/".$date[1]."/".$date[0];
     return $date;
 }
-
-
-
-
 
 
 
