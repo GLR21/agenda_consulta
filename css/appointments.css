@@ -1,12 +1,19 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-
 html,body
 {
-    height:100%;
+    height:auto;
     width:100%;
     margin:0;
 }
+
+
+@font-face 
+{
+    font-family: Roboto;
+    src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+}
+
+
 
 body
 {
@@ -27,7 +34,7 @@ body
 .appointments-table thead tr td
 {
     white-space: nowrap;
-    height: 1em;
+    height: auto;
     padding-left: 0.5em;
     padding-right: 0.5em;
     text-align: left;
@@ -52,4 +59,23 @@ body
 {
     margin: auto;
     display: inline-block;
+}
+
+
+.search-area
+{
+    font-size: 1em;
+    
+}
+
+.search-bar
+{
+    height: auto;
+    width: 12em;
+    margin-bottom: 0.5em;
+    border-radius: 1em;
+    border: none;
+    padding-left: 2em;
+    padding: 0.5em;
+    
 }

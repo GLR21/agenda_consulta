@@ -1,24 +1,27 @@
 
-
 <?php
         require_once "../services/AppointmentManager.php";
-
         $manager = new AppointmentManager( null, "getAll" );
-        // var_dump( $manager->getAll() );
         $manager = json_encode(  $manager->getAll() );
+?>
 
-    ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link  type="text/css"  rel="stylesheet" href="../../css/appointments.css">
+    <link  type="text/css"  rel="stylesheet" href="../../css/appointments.css?v2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointments</title>
 </head>
 <body>
     <div id="nav"></div>
-    <div id="content" class="content" ></div>
+    <div id="content" class="content" >
+        <div class="search-area" >
+            <label for="search-bar"><span>Search:</span></label>
+            <input class="search-bar" oninput="search( this.value )" type="text" name="search-bar" id="search-bar">
+        </div>
+    </div>
+    
 </body>
 
 </html>
@@ -29,6 +32,7 @@ var appointments = <?php echo $manager ?>
 
 var table = document.createElement( 'table' );
 table.setAttribute( 'class', "appointments-table" );
+table.setAttribute( 'id', "appointments-table" );
 
 var thead = table.appendChild( document.createElement( 'THEAD' ) );
 
@@ -204,5 +208,35 @@ appointments.forEach
 
                 }
 );
+
+function search( value )
+{
+    var table = document.getElementById('appointments-table');
+
+    var i = 0;
+    var x = 0;
+
+    while( i < table.rows.length)
+    {
+        x = 0;
+        while( x < table.rows[i].childNodes.length  )
+        {
+            var j = 0;
+            while(  j < table.rows[i].childNodes[x].childNodes[0].data.length )
+            {
+
+                var str  = table.rows[i].childNodes[x].childNodes[0].data.split( "" );
+
+                console.log( str[j] === value   );
+                console.log(   str[j] );
+                ++j;
+            }
+
+
+            ++x;
+        }
+        ++i;
+    }
+}
 
 </script>
