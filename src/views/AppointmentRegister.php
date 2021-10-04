@@ -44,7 +44,7 @@
                             <label for="start-date">Date start:</label>
                         </th>
                         <td>
-                            <input class="inputs" oninput="validateDateFormat( this, 'dd/MM/yyyy' )" placeholder="Define the appointment's start day"  value="<?php echo isset($_GET) ? $_GET['start_date'] : ""; ?>"  name="start-date" id="start-date">
+                            <input class="inputs" oninput="validateDateFormat( this, 'dd/MM/yyyy' )" placeholder="Define the appointment's start day"  value="<?php echo isset($_GET['start_date']) ? $_GET['start_date'] : ""; ?>"  name="start-date" id="start-date">
                         </td>
                     </tr>
                     <tr>
@@ -52,7 +52,7 @@
                             <label for="start-hour">Hour :</label>
                         </th>
                         <td>
-                            <input  class="inputs" name="start-hour" value="<?php echo isset($_GET) ? $_GET['start_time'] : ""; ?>" id="start-hour" type="time"">
+                            <input  class="inputs" name="start-hour" value="<?php echo isset($_GET['start_time']) ? $_GET['start_time'] : ""; ?>" id="start-hour" type="time"">
                         </td>
                     </tr>
                     <tr>
@@ -60,7 +60,7 @@
                             <label for="rg">End:</label>                        
                         </th>
                         <td>
-                            <input class="inputs" oninput="validateDateFormat( this, 'dd/MM/yyyy' )" value="<?php echo isset($_GET) ? $_GET['end_date'] : ""; ?>" placeholder="Define the appointment's end day"  type="text" name="end-date" id="end-date">
+                            <input class="inputs" oninput="validateDateFormat( this, 'dd/MM/yyyy' )" value="<?php echo isset( $_GET['end_date']) ? $_GET['end_date'] : ""; ?>" placeholder="Define the appointment's end day"  type="text" name="end-date" id="end-date">
                         </td>
                     </tr>
                     <tr>
@@ -68,7 +68,7 @@
                             <label for="end-hour">Hour :</label>
                         </th>
                         <td>
-                            <input  class="inputs" name="end-hour" value="<?php echo isset($_GET) ? $_GET['end_time'] : ""; ?>" id="end-hour" type="time"">
+                            <input  class="inputs" name="end-hour" value="<?php echo isset($_GET['end_time']) ? $_GET['end_time'] : ""; ?>" id="end-hour" type="time"">
                         </td>
                     </tr>
                     <tr >
@@ -76,7 +76,7 @@
                             <label for="cost">Cost:</label>
                         </th>
                         <td  >
-                            <input class="inputs" oninput="inputCost(this)" type="text" value="<?php echo isset($_GET) ? $_GET['cost'] : ""; ?>" name="cost" id="cost">
+                            <input class="inputs" oninput="inputCost(this)" type="text" value="<?php echo isset($_GET['cost']) ? $_GET['cost'] : ""; ?>" name="cost" id="cost">
                         </td>
                     </tr>
                     <tr >
@@ -92,7 +92,7 @@
                 </tbody>
             </table>
             <?php
-                if( isset($_GET) )
+                if( isset($_GET['id']) )
                 {
                     echo '<input type="hidden" name="appointid" value="'.  $_GET['id'] . '">';
                 }
@@ -158,12 +158,16 @@
 
 <script>
     var doctor   = <?php echo json_encode( $doctors ); ?> ;
+
     var patient  = <?php echo json_encode( $patients ); ?>;
+    
     var insurances = <?php echo json_encode( $insurances ); ?>;
 
-    var editDoc = <?php if( isset( $_GET ) ){  echo json_encode($_GET['docId']); } ?> == null?  "":  <?php if( isset( $_GET ) ){  echo json_encode($_GET['docId']); } ?> ;
-    var editPat = <?php if( isset( $_GET ) ){  echo json_encode($_GET['paID']); } ?> == null?  "":  <?php if( isset( $_GET ) ){  echo json_encode($_GET['paID']); } ?> ;
-    var editInsurance = <?php if( isset( $_GET ) ){  echo json_encode($_GET['i_id']); } ?> == null?  "":  <?php if( isset( $_GET ) ){  echo json_encode($_GET['i_id']); } ?> ;
+    var editDoc = <?php echo isset( $_GET['docId']  ) ?  json_encode( $_GET['docId'] ) : json_encode(null); ?>;
+
+    var editPat = <?php echo isset( $_GET['paID'] ) ? json_encode(  $_GET['paID']  ) : json_encode( null ) ?>;
+
+    var editInsurance = <?php echo isset( $_GET['i_id']) ? json_encode( $_GET['i_id'] ) : json_encode( null ) ?>;
 
     doctor.forEach(
         e =>

@@ -18,7 +18,6 @@ class AppointmentTransaction
                                                     PATIENT_ID, 
                                                     START_AT, 
                                                     END_AT, 
-                                                    TREATMENT, 
                                                     COST, 
                                                     INSURANCE
                                                 ) 
@@ -30,11 +29,12 @@ class AppointmentTransaction
                                                     $patient_id ,  
                                                     '$start_at' , 
                                                     '$end_at' , 
-                                                    '$treatment' , 
                                                     $cost, 
                                                     $hasInsurance 
                                                 ) " 
                                             );
+
+
                                   
             $prepared->execute();
         }

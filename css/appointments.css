@@ -26,33 +26,32 @@ body
 
 .appointments-table
 {
-    /* border: 1px solid black; */
     border-collapse: collapse;
-    display: inline-block;
-}
-
-.appointments-table thead tr td
-{
-    white-space: nowrap;
-    height: auto;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    text-align: left;
-    /* font-size: 5px; */
-    
-}
-
-.appointments-table tr td
-{
-    white-space: nowrap;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    text-align: left;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    margin-top: 0;
+    display: inline-flex;
     background-color: white;
-    border: 1px solid black;
+}
+
+
+
+.appointments-table tr tr
+{
+    display: grid;
+}
+
+.span
+{
+
+    padding-left: 0.5em;
+    background-color: #bfbfbf;
+    display: grid;
+}
+
+.appointments-table tr tr td
+{
+    padding-left: 0.5em;
+    display: grid;
+    height: 50px;
+    vertical-align: middle;
 }
 
 .content
